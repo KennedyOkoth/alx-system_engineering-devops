@@ -2,4 +2,4 @@
 # This script displays the PID along with the process name
 # shellcheck disable=SC2009
 
-ps -aux | grep bash | grep -v grep
+ps -aux | grep bash
