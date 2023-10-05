@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#  Bash script that displays listening ports:
+#     That only shows listening sockets
+#     That shows the PID and name of the program to which each socket belongs
+
+#!/bin/bash
+
+echo "Listening Ports:"
+echo "----------------"
+
+# Using ss to get a list of listening sockets and their associated PIDs
+ss -tuln | awk '{print $4}' | grep -E ':[0-9]+' | while read -r line; do
+    port=$(echo "$line" | awk -F':' '{print $NF}')
+    pid=$(lsof -i :$port -t)
+    program=$(lsof -i :$port -sTCP:LISTEN -n -P | tail -1 | awk '{print $1}')
+    if [ -n "$pid" ] && [ -n "$program" ]; then
+        echo "Port: $port, PID: $pid, Program: $program"
+    fi
+done
+
