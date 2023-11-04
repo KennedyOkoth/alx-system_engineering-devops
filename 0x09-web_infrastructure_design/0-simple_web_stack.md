@@ -10,4 +10,3 @@ graph TD
     AppServer-.->|8. HTML response|WebServer
     WebServer-.->|9. Return HTML response|Browser
     Browser-->|10. Render webpage|User
-
