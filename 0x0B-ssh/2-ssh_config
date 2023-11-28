@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script configures the local SSH client to use the private key ~/.ssh/school
+# and refuse authentication using a password.
+
+# Ensure the SSH directory exists
+mkdir -p ~/.ssh
+
+# Create or update the SSH client configuration file
+echo -e "Host *\n  IdentityFile ~/.ssh/school\n  PasswordAuthentication no" > ~/.ssh/config
+
+# Set appropriate permissions for the SSH directory and configuration file
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+
