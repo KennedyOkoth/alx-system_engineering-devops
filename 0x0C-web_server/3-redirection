@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
+# install ngix server
 
-# Install Nginx server
-apt-get update
-apt-get install -y nginx
-
-# Allow Nginx HTTP traffic
-ufw allow 'Nginx HTTP'
-
-# Set default index.html content
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 echo "Holberton School" > /var/www/html/index.html
-
-# Configure redirection for /redirect_me
 sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-
-# Restart Nginx to apply changes
-service nginx reload
+sudo service nginx reload
+sudo service nginx start
